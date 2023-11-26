@@ -3,14 +3,15 @@
     <head>
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="index.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-        <title> Dev-test </title>
-    </head>
+		<link rel="stylesheet" href="index.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>        <title> Dev-test </title>
+		<title> Dev-Test </title>
+	</head>
     <body>
 
 	<!-- Cabeçalho -->
-	<nav class="navbar navbar-dark navbar-expand-md bg-dark px-5">
+	<nav class="navbar fixed-top navbar-dark navbar-expand-md bg-dark px-5">
 		<!-- Logo do Integrado -->
 		<a class="navbar-brand"  href="#"> 
 			<img src="../assets/logo.png" alt="Centro Universitário Integrado" width="30" height="30">
@@ -23,46 +24,44 @@
 		<!-- Itens -->
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav ms-auto">
-				<li class="nav-item"> <a class="nav-link">Graduação</a></li>
+				<li class="nav-item"> <a href="graduacao.html" class="nav-link">Graduação</a></li>
 				<li class="nav-item"> <a class="nav-link">Pós-graduação</a> </li>
-				<li class="nav-item"> <a class="nav-link">Matrícula</a></li>
+				<li class="nav-item"> <a href="matricula.html" class="nav-link">Matrícula</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<!-- Carrossel de imagens -->
-	<div id="carrosselPaginaInicial" class="carousel slide" data-bs-ride="carousel">
+	<div id="carrosselPaginaInicial" class="carousel slide" data-bs-touch="false">
 		<div class="carousel-inner">
-		  <div class="carousel-item active carrossel-item">
-			<img src="../assets/197727310.webp" class="d-block w-100 carrossel-imagem" alt="Nota máxima no MEC">
-			<div class="carousel-caption d-block">
-				<button class="btn btn-primary">Faça sua matrícula agora</button>
+			<div class="carousel-item active carrossel-item">
+				<img src="../assets/197727310.webp" class="d-block w-100 carrossel-imagem" alt="Nota máxima no MEC">
+				<div class="carousel-caption d-block">
+					<button class="btn btn-primary">Faça sua matrícula agora</button>
+				</div>
 			</div>
-		  </div>
-		  <div class="carousel-item carrossel-item">
-			<img src="../assets/258159298.jpg" class="d-block w-100 carrossel-imagem" alt="Bolsas de até 100%*">
-			<div class="carousel-caption d-block">
-				<button class="btn btn-warning">Conheça os cursos de Graduação.</button>
+			<div class="carousel-item carrossel-item">
+				<img src="../assets/258159298.jpg" class="d-block w-100 carrossel-imagem" alt="Bolsas de até 100%*">
+				<div class="carousel-caption d-block">
+					<button class="btn btn-warning">Conheça os cursos de Graduação.</button>
+				</div>>
+		  	</div>
+			<div class="carousel-item carrossel-item">
+				<img src="../assets/49536517.jpg" class="d-block w-100 carrossel-imagem" alt="Transferir de faculdade e economizar">
+				<div class="carousel-caption d-block">
+					<button class="btn btn-dark">Confira os cursos de Pós-Graduação.</button>
+				</div>
 			</div>
-		  </div>
-		  <div class="carousel-item carrossel-item">
-			<img src="../assets/49536517.jpg" class="d-block w-100 carrossel-imagem" alt="Transferir de faculdade e economizar">
-			<div class="carousel-caption d-block">
-				<button class="btn btn-dark">Confira os cursos de Pós-Graduação.</button>
-			</div>
-		  </div>
-		  <button class="carousel-control-prev" type="button" data-bs-target="#carrosselPaginaInicial" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		  </button>
-		  <button class="carousel-control-next" type="button" data-bs-target="#carrosselPaginaInicial" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		  </button>		
-		</div>
-	  </div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carrosselPaginaInicial" data-bs-slide="prev">
+		 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		 		<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carrosselPaginaInicial" data-bs-slide="next">
+		 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+	  	</div>
+	</div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>
