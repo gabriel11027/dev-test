@@ -1,5 +1,3 @@
-console.log('test')
-
 function filtarCursos(dataCursos) 
 {
     $(".col-12").each(function (index, obj) {
