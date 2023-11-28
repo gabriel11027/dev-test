@@ -38,7 +38,7 @@ $("#formBuscar").on("keyup change paste", "input, select, textarea", function(){
 $(".matricula").on("click", function() {
     var matricula = "./matricula.html?curso=" + $(this).parent().parent().attr("id"); 
 
-    if(curso) {
+    if(matricula) {
         window.location = matricula;
     }
 });
