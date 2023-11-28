@@ -1,6 +1,6 @@
 function filtarCursos(dataCursos) 
 {
-    $(".col-12").each(function (index, obj) {
+    $(".col-8").each(function (index, obj) {
         if (!dataCursos.includes($(obj).attr("id"))) 
         {
             $(obj).addClass("d-none");
@@ -8,7 +8,6 @@ function filtarCursos(dataCursos)
         else {
             $(obj).removeClass("d-none");
         }
-        console.log(index)
     })
 }
 

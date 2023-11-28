@@ -4,10 +4,10 @@ body {
 }
 
 .card-altura {
-    height: 13rem;
+    height: 15rem!important;
 }
 
-.card-imagem{
-    width: 100%!important;
-    object-fit: fill;
+.card-imagem-altura{
+    height: 16rem!important;
+    object-fit: cover;
  }
