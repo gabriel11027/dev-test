@@ -45,52 +45,74 @@
 
 	<div class="container">
 		<div class="p-5 rounded">
-			<form class="row g-3">
+			<form>
 				<legend>Dados pessoais</legend>
-				<div class="col-md-6">
-					<label for="inputNomeCompleto" class="form-label">Nome completo</label>
-					<input type="text" class="form-control" id="inputNomeCompleto">
-				</div>
-				<div class="col-md-6">
-					<label for="inputCursoSelecionado" class="form-label">Curso</label>
-					<select type="text" class="form-select" id="inputCursoSelecionado">
-						<option selected disabled>Selecione seu curso</option>
-				
-						<option disabled>Graduação:</option>
-						<option value="curso1">Administração - Presencial</option>
-						<option value="curso2">Administração - A distância</option>
-						<option value="curso3">Agronomia - Presencial</option>
-						<option value="curso4">Arquitetura e Urbanismo - Presencial</option>
-						<option value="curso5">Biomedicina - Presencial</option>
-						<option value="curso6">Ciências Biológicas - Presencial</option>
-						<option value="curso7">Ciências Contábeis - Presencial</option>
-						<option value="curso8">Ciências Contábeis - A distância</option>
-						<option value="curso9">Direito - Presencial</option>
-						<option value="curso10">Engenharia Civil - Presencial</option>
-						<option value="curso11">História - Presencial</option>
-						<option value="curso12">Medicina - Presencial</option>
+				<div class="primeira-etapa row g-3">
+					<div class="col-md-6">
+						<label for="inputNomeCompleto" class="form-label">Nome completo</label>
+						<input type="text" class="form-control" id="inputNomeCompleto">
+					</div>
+					<div class="col-md-6">
+						<label for="inputCursoSelecionado" class="form-label">Curso</label>
+						<select type="text" class="form-select" id="inputCursoSelecionado">
+							<option selected disabled>Selecione seu curso</option>
+					
+							<option disabled>Graduação:</option>
+							<option value="curso1">Administração - Presencial</option>
+							<option value="curso2">Administração - A distância</option>
+							<option value="curso3">Agronomia - Presencial</option>
+							<option value="curso4">Arquitetura e Urbanismo - Presencial</option>
+							<option value="curso5">Biomedicina - Presencial</option>
+							<option value="curso6">Ciências Biológicas - Presencial</option>
+							<option value="curso7">Ciências Contábeis - Presencial</option>
+							<option value="curso8">Ciências Contábeis - A distância</option>
+							<option value="curso9">Direito - Presencial</option>
+							<option value="curso10">Engenharia Civil - Presencial</option>
+							<option value="curso11">História - Presencial</option>
+							<option value="curso12">Medicina - Presencial</option>
 
-						<option disabled>Pós-Graduação:</option>
-						<option value="curso13">Análises Clínicas - A distância</option>
-						<option value="curso13">Aprendizagem Ativa e Tecnologias... - A distância</option>
-						<option value="curso13">Assistência Técnica e Extensão Rural - A distância</option>
-						<option value="curso13">Banco de Dados - A distância</option>
-						<option value="curso13">Biomecânica da Atividade Física e... - A distância</option>
-						<option value="curso13">Ciência de Dados e Big Data - A distância</option>
-						<option value="curso13">Ciências da Religião - A distância</option>
-						<option value="curso13">Clínica Médica de Cães e Gatos - Presencial</option>
-					</select>
+							<option disabled>Pós-Graduação:</option>
+							<option value="curso13">Análises Clínicas - A distância</option>
+							<option value="curso14">Aprendizagem Ativa e Tecnologias... - A distância</option>
+							<option value="curso15">Assistência Técnica e Extensão Rural - A distância</option>
+							<option value="curso16">Banco de Dados - A distância</option>
+							<option value="curso17">Biomecânica da Atividade Física e... - A distância</option>
+							<option value="curso18">Ciência de Dados e Big Data - A distância</option>
+							<option value="curso19">Ciências da Religião - A distância</option>
+							<option value="curso20">Clínica Médica de Cães e Gatos - Presencial</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+					<label for="inputEmail" class="form-label">Email</label>
+					<input type="email" class="form-control" id="inputEmail">
+					</div>
+					<div class="col-md-6">
+					<label for="inputTelefone" class="form-label">Telefone</label>
+					<input type="text" class="form-control" id="inputTelefone">
+					</div>
+					<div>
+					<button type="submit" class="btn btn-primary">Próxima etapa</button>
+					</div>
 				</div>
-				<div class="col-md-6">
-				  <label for="inputEmail" class="form-label">Email</label>
-				  <input type="email" class="form-control" id="inputEmail">
-				</div>
-				<div class="col-md-6">
-				  <label for="inputTelefone" class="form-label">Telefone</label>
-				  <input type="text" class="form-control" id="inputTelefone">
-				</div>
-				<div>
-				  <button type="submit" class="btn btn-primary">Próxima etapa</button>
+				<div class="segunda-etapa row g-3 d-none">
+					<div class="col-md-6">
+						<label for="inputNomeCompleto" class="form-label">Nome completo</label>
+						<input type="text" class="form-control" id="inputNomeCompleto">
+					</div>
+					<div class="col-md-6">
+						<label for="inputCursoSelecionado" class="form-label">Curso</label>
+					</div>
+					<div class="col-md-6">
+					<label for="inputEmail" class="form-label">Email</label>
+					<input type="email" class="form-control" id="inputEmail">
+					</div>
+					<div class="col-md-6">
+					<label for="inputTelefone" class="form-label">Telefone</label>
+					<input type="text" class="form-control" id="inputTelefone">
+					</div>
+					<div>
+					<button type="submit" class="btn btn-primary">Próxima etapa</button>
+					</div>
 				</div>
 			</form>
 		</div>

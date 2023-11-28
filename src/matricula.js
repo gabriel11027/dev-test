@@ -1,7 +1,10 @@
 $(document).ready(function() {
     var url = new URL(window.location);
     var cursoSelecionado = url.searchParams.get("curso");
-    
-    console.log(cursoSelecionado)
+
+    if(cursoSelecionado) {
+        curso = "option[value='" + cursoSelecionado + "']";
+        $("option[value=" + cursoSelecionado + "]").attr("selected", true);
+    }
 });
 
