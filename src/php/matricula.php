@@ -46,9 +46,9 @@
         }
         
         if ($sucesso) {
-            $sql_insert = "INSERT INTO ALUNOS_POTENCIAIS(NOME_COMPLETO, CURSO, EMAIL, TELEFONE) VALUES".
-                          "('{$inputNomeCompleto}', '{$inputCursoSelecionado}',".
-                          "'{$inputEmail}', '{$inputTelefone}')";
+            $sql_insert = "INSERT INTO ALUNOS_POTENCIAIS(NOME_COMPLETO, CURSO, EMAIL, TELEFONE) VALUES" .
+                          "('{$inputNomeCompleto}', '{$inputCursoSelecionado}'," .
+                          " '{$inputEmail}',        '{$inputTelefone}')";
             
             // Conectar MySQL 
             $conn = mysqli_connect("localhost", "root", "", "ALUNOS");
@@ -61,19 +61,19 @@
             $houve_mudança = 1;
 
             // Checa se o usuário voltou para mudar algum dado, a fim de evitar entras repetidas na base de dados
-            if ($_SESSION["NOME"] == $inputNomeCompleto && $_SESSION["CURSO"] = $inputCursoSelecionado && 
+            if ($_SESSION["NOME_COMPLETO"] == $inputNomeCompleto && $_SESSION["CURSO"] = $inputCursoSelecionado && 
                 $_SESSION["EMAIL"] == $inputEmail && $_SESSION["TELEFONE"] = $inputTelefone ) 
             {
                     $houve_mudança = 0;
             }
 
             if ($houve_mudança == 1 && mysqli_query($conn, $sql_insert)) {
-                $resposta["aluno_cadastrado"] = 1;
+                $resposta["aluno_identificado"] = 1;
             } else {
                 array_push($erros, "erro_banco_de_dados");
             }
 
-            $_SESSION["NOME"] = $inputNomeCompleto;
+            $_SESSION["NOME_COMPLETO"] = $inputNomeCompleto;
             $_SESSION["CURSO"] = $inputCursoSelecionado;
             $_SESSION["EMAIL"] = $inputEmail;
             $_SESSION["TELEFONE"] = $inputTelefone;
@@ -115,9 +115,9 @@
         }
 
         if ($sucesso) {
-            $_SESSION["CEP"] = $inputCEP;
-            $_SESSION["CPF"] = $inputCPF;
-            $_SESSION["DATA_DE_NASCIMENTO"] = $inputNascimento;
+            $_SESSION["CEP"] = str_replace(array("-"), "", $inputCEP);
+            $_SESSION["CPF"] = str_replace(array(".", "-"), "", $inputCPF);
+            $_SESSION["NASCIMENTO"] = $inputNascimento;
         }
 
         $resposta["erros"] = $erros;
@@ -131,23 +131,56 @@
         $erros = array();
         $sucesso = 1;
 
-        $documento = $_FILES["inputDocumento"]["tmp_name"];
-        $tamanho = filesize($documento);
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $finfo_file = NULL;
+        $documento = NULL;
+        $extensao = NULL;
+        $tamanho = NULL;
+        $erro = NULL;
 
         // Valida se algum arquivo foi enviado
-        if (!isset($_FILES["inputDocumento"])) {
+        if (isset($_FILES["inputDocumento"])) {
+            $documento = $_FILES["inputDocumento"]["tmp_name"];
+            $extensao = $_FILES["inputDocumento"]["type"];
+            $tamanho = $_FILES["inputDocumento"]["size"];
+            $erro = $_FILES["inputDocumento"]["error"];
+
+        } else {
             array_push($erros, "erro_documento");
             $sucesso = 0;
-        } else {
-            $finfo_file = finfo_file($finfo, $documento);
         }
       
         // Testa se o formato do arquivo está em pdf
-        if ($finfo_file != "application/pdf") {
+        if ($extensao != "application/pdf") {
             array_push($erros, "erro_pdf");
             $sucesso = 0;
+        }
+
+        if ($sucesso) {            
+            // Enviar arquivo para o servidor
+            $target_dir = "./documentos/documento" . $_SESSION["CPF"] . ".pdf";
+            $move = move_uploaded_file($_FILES["inputDocumento"]["tmp_name"], $target_dir);
+
+            // Salvar informações na tabela
+            $sql_insert = "INSERT INTO ALUNOS_MATRICULADOS (NOME_COMPLETO, CURSO, EMAIL, TELEFONE, NASCIMENTO, CEP, CPF, DOCUMENTO) VALUES" .
+                          "('{$_SESSION['NOME_COMPLETO']}', '{$_SESSION['EMAIL']}',".
+                          "'{$_SESSION['EMAIL']}',          '{$_SESSION['TELEFONE']}',".
+                          "'{$_SESSION['NASCIMENTO']}',     '{$_SESSION['CEP']}'," .
+                          "'{$_SESSION['CPF']}',            '{$target_dir}')";
+
+            // Conectar MySQL 
+            $conn = mysqli_connect("localhost", "root", "", "ALUNOS");
+        
+            // Falha na conexão 
+            if (!$conn) {
+                exit("Erro de conexão a base de dados: " . mysqli_connect_error());
+            }
+
+
+            if (mysqli_query($conn, $sql_insert)) {
+                $resposta["aluno_cadastrado"] = 1;
+            } else {
+                array_push($erros, "erro_banco_de_dados");
+            }
+            
         }
 
         $resposta["erros"] = $erros;

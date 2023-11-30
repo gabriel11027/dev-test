@@ -112,19 +112,19 @@ $("button[name='submeter-terceira-etapa']").on("click", function(e) {
     var dados_terceira_etapa = new FormData();
     dados_terceira_etapa.append("submeter-terceira-etapa", true)
     dados_terceira_etapa.append("inputDocumento", document.getElementById("inputDocumento").files[0]);
-    console.log(dados_terceira_etapa)
 
     $.ajax({
         url        : "php/matricula.php",
         type       : "POST",
         data       : dados_terceira_etapa,
         processData: false, 
-        contentType: false,
+        contentType: false
     }).done(function (resposta_servidor) {
         console.log(resposta_servidor)
-
-        if(resposta_servidor["sucesso"] == 1)
-            mostrarProximaEtapa("terceira-etapa");
+        if (JSON.parse(resposta_servidor)["sucesso"] == 1) {
+            $(".terceira-etapa").addClass("d-none");
+            $(".sucesso").removeClass("d-none");
+        }
     });
 
 });
