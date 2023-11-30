@@ -18,7 +18,13 @@
         $inputEmail = ($_POST["inputEmail"]); 
         $inputTelefone = str_replace(array("(", ")", "-", " "), "", $_POST["inputTelefone"]); 
 
-
+        // Conectar MySQL 
+        $conn_alunos_matriculados = mysqli_connect("localhost", "root", "", "ALUNOS");
+        
+        // Falha na conexão 
+        if (!$conn_alunos_matriculados) {
+            exit("Erro de conexão a base de dados: " . mysqli_connect_error());
+        }
         // Validação da primeira etapa
         
         // Nome inválido
@@ -37,6 +43,14 @@
         if (!filter_var($inputEmail, FILTER_VALIDATE_EMAIL)) {
             array_push($erros, "erro_email");
             $sucesso = 0;
+        } else {
+            $sql_query_email = "SELECT * FROM ALUNOS_MATRICULADOS WHERE EMAIL='{$inputEmail}'";
+            $query_result = mysqli_query($conn_alunos_matriculados, $sql_query_email);
+
+            if (mysqli_num_rows($query_result) != 0) {
+                array_push($erros, "erro_email");
+                $sucesso = 0;
+            }
         }
        
         // Telefone inválido (contém números) ou (tamanho != 9 e tamanho !=11)
