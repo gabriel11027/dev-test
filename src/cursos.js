@@ -1,12 +1,12 @@
+// Adiciona a classe d-none aos cursos filtrados
 function filtarCursos(dataCursos) 
 {
-    $(".col-8").each(function (index, obj) {
-        if (!dataCursos.includes($(obj).attr("id"))) 
-        {
-            $(obj).addClass("d-none");
-        } 
-        else {
-            $(obj).removeClass("d-none");
+    $(".col-8").each(function (curso) {
+        curso += 1;
+        if (!dataCursos.includes($("#curso" + curso).attr("id"))) {
+            $("#curso" + curso).addClass("d-none");
+        } else {
+            $("#curso" + curso).removeClass("d-none");
         }
     })
 }
@@ -14,10 +14,10 @@ function filtarCursos(dataCursos)
 function submeterPesquisa()
 {
     data_input = $("#formBuscar").serialize();
-
+    console.log(data_input)
     $.ajax({
         type: "POST",
-        url: "buscar.php",
+        url: "php/buscar.php",
         data: data_input,
         dataType: "json",
         encode: true
@@ -27,7 +27,7 @@ function submeterPesquisa()
 }
 
 
-$("#formBuscar").on("keyup change paste", "input, select, textarea", function(){
+$("#formBuscar").on("keyup change paste", "input, select", function() {
     submeterPesquisa();
 }).submit(function(e) {
     submeterPesquisa();
