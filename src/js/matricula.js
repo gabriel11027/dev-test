@@ -12,8 +12,6 @@ $(document).ready(function() {
     $("#inputCEP").mask("99999-999");
     $("#inputCPF").mask("999.999.999-99");
     $("#inputNascimento").mask("99/99/9999");
-    mostrarProximaEtapa("terceira-etapa");
-
 });
 
 
@@ -120,7 +118,6 @@ $("button[name='submeter-terceira-etapa']").on("click", function(e) {
         processData: false, 
         contentType: false
     }).done(function (resposta_servidor) {
-        console.log(resposta_servidor)
         if (JSON.parse(resposta_servidor)["sucesso"] == 1) {
             $(".terceira-etapa").addClass("d-none");
             $(".sucesso").removeClass("d-none");
