@@ -122,6 +122,6 @@ $("button[name='submeter-terceira-etapa']").on("click", function(e) {
             $(".terceira-etapa").addClass("d-none");
             $(".sucesso").removeClass("d-none");
         }
-    });
+    })
 
 });

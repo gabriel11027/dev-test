@@ -19,10 +19,10 @@
         $inputTelefone = str_replace(array("(", ")", "-", " "), "", $_POST["inputTelefone"]); 
 
         // Conectar MySQL 
-        $conn_alunos_matriculados = mysqli_connect("localhost", "root", "", "ALUNOS");
+        $conn_alunos = mysqli_connect("localhost", "root", "", "ALUNOS");
         
         // Falha na conexão 
-        if (!$conn_alunos_matriculados) {
+        if (!$conn_alunos) {
             exit("Erro de conexão a base de dados: " . mysqli_connect_error());
         }
         // Validação da primeira etapa
@@ -44,15 +44,17 @@
             array_push($erros, "erro_email");
             $sucesso = 0;
         } else {
+            // Valida se o email já não foi cadastrado
             $sql_query_email = "SELECT * FROM ALUNOS_MATRICULADOS WHERE EMAIL='{$inputEmail}'";
-            $query_result = mysqli_query($conn_alunos_matriculados, $sql_query_email);
+            $query_result = mysqli_query($conn_alunos, $sql_query_email);
 
             if (mysqli_num_rows($query_result) != 0) {
                 array_push($erros, "erro_email");
                 $sucesso = 0;
             }
         }
-       
+        mysqli_close($conn_alunos);
+
         // Telefone inválido (contém números) ou (tamanho != 9 e tamanho !=11)
         if (!preg_match("/^\d{11}$/", $inputTelefone)) {
             array_push($erros, "erro_telefone");
@@ -91,6 +93,8 @@
             $_SESSION["CURSO"] = $inputCursoSelecionado;
             $_SESSION["EMAIL"] = $inputEmail;
             $_SESSION["TELEFONE"] = $inputTelefone;
+
+            mysqli_close($conn);
         }
 
         $resposta["erros"] = $erros;
@@ -181,20 +185,25 @@
                           "'{$_SESSION['CPF']}',            '{$target_dir}')";
 
             // Conectar MySQL 
-            $conn = mysqli_connect("localhost", "root", "", "ALUNOS");
+            $conn_alunos = mysqli_connect("localhost", "root", "", "ALUNOS");
         
             // Falha na conexão 
-            if (!$conn) {
+            if (!$conn_alunos) {
                 exit("Erro de conexão a base de dados: " . mysqli_connect_error());
             }
 
 
-            if (mysqli_query($conn, $sql_insert)) {
+            if (mysqli_query($conn_alunos, $sql_insert)) {
                 $resposta["aluno_cadastrado"] = 1;
+            
+                // Remover usuário da lista de alunos potenciais
+                $sql_delete = "DELETE FROM `ALUNOS_POTENCIAIS` WHERE EMAIL='{$_SESSION['EMAIL']}'";
+                mysqli_query($conn_alunos, $sql_insert);
             } else {
                 array_push($erros, "erro_banco_de_dados");
             }
-            
+
+            mysqli_close($conn_alunos);
         }
 
         $resposta["erros"] = $erros;
